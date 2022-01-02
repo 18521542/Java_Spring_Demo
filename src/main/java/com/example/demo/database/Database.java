@@ -14,8 +14,8 @@ public class Database {
         return new CommandLineRunner() {
             @Override
             public void run(String... args) throws Exception {
-                Product prod1 = new Product(1L,"Macbook",2000,"img.com/mac");
-                Product prod2 = new Product(2L,"Iphone",3000,"img.com/iphone");
+                Product prod1 = new Product("Macbook",2000,"img.com/mac");
+                Product prod2 = new Product("Iphone",3000,"img.com/iphone");
                 productRepository.save(prod1);
                 productRepository.save(prod2);
             }

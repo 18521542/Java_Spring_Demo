@@ -1,15 +1,24 @@
 package com.example.demo.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String Name;
     private int price;
     private String imageURL;
 
     public Product(){};
 
-    public Product(Long id, String name, int price, String imageURL) {
-        this.id = id;
+    public Product(String name, int price, String imageURL) {
         Name = name;
         this.price = price;
         this.imageURL = imageURL;
