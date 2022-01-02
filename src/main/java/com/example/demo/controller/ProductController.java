@@ -14,7 +14,8 @@ public class ProductController {
     @GetMapping("")
     List<Product> Hello(){
         return List.of(
-
+            new Product(1L, "Macbook", 2000, "bsdhfjsd.com/sadas"),
+            new Product(2L, "Iphone", 1000, "bsdhfjsd.com/iphone")
         );
     }
 }
