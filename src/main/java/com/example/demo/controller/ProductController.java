@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.CustomResponse;
 import com.example.demo.model.Product;
 import com.example.demo.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,16 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    Optional<Product> findProductById(@PathVariable Long id){
-        return repository.findById(id);
+    CustomResponse findProductById(@PathVariable Long id){
+        try {
+            Optional<Product> foundProduct = repository.findById(id);
+            return foundProduct.isPresent() ?
+                    (new CustomResponse("OK", "Product Found!", foundProduct))
+                    :
+                    (new CustomResponse("failed", "Product not found!", null));
+        }
+        catch (RuntimeException e){
+            return new CustomResponse("failed", "Product not found!", null);
+        }
     }
 }
