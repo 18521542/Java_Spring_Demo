@@ -56,4 +56,21 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new CustomResponse("OK","Product not found!",null));
     }
+
+    @PutMapping("/{id}")
+    ResponseEntity<CustomResponse> updateProduct(@RequestBody Product newProduct, @PathVariable Long id){
+        Product updatedProduct = repository.findById(id)
+                                            .map(product -> {
+                                                product.setPrice(newProduct.getPrice());
+                                                product.setImageURL(newProduct.getImageURL());
+                                                product.setName(newProduct.getName());
+                                                return repository.save(product);
+                                            }).orElseGet(() -> {
+                                                newProduct.setId(id);
+                                                return repository.save(newProduct);
+                                            });
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new CustomResponse("OK","Product updated!", updatedProduct)
+        );
+    }
 }
