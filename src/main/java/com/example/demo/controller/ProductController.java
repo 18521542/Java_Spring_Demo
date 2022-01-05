@@ -45,7 +45,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<CustomResponse> updateProduct(@PathVariable Long id){
+    ResponseEntity<CustomResponse> deleteProduct(@PathVariable Long id){
         boolean isProductExist = repository.existsById(id);
         if(isProductExist){
             repository.deleteById(id);
