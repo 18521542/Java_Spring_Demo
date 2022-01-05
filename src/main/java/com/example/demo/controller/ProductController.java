@@ -43,4 +43,17 @@ public class ProductController {
                 .status(HttpStatus.OK)
                 .body(new CustomResponse("OK", "Product Created!", repository.save(newProduct)));
     }
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<CustomResponse> updateProduct(@PathVariable Long id){
+        boolean isProductExist = repository.existsById(id);
+        if(isProductExist){
+            repository.deleteById(id);
+            String result = "Delete product with id = "+ id;
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new CustomResponse("OK","Product Deleted!",result));
+        }
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new CustomResponse("OK","Product not found!",null));
+    }
 }
