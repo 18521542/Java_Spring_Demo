@@ -16,8 +16,12 @@ public class Database {
             public void run(String... args) throws Exception {
                 Product prod1 = new Product("Macbook",2000,"img.com/mac");
                 Product prod2 = new Product("Iphone",3000,"img.com/iphone");
-                productRepository.save(prod1);
-                productRepository.save(prod2);
+
+                //hard code
+                if(!productRepository.existsById(1L)){
+                    productRepository.save(prod1);
+                    productRepository.save(prod2);
+                }
             }
         };
     }
