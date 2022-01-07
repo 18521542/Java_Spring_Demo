@@ -4,8 +4,9 @@ networks:
 
 services:
   java:
-    buidl: .
-    context: Dockerfile
+    build: 
+      context: .
+      dockerfile: dockerfile
     container_name: JAVA_BACKEND
     environment:
       - DB_NAME=${DB_NAME}
